@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Trova il miglior alloggio studentesco vicino all'UPNA di Pamplona. Camera singola con bagno e cucina privati." />
+  <title>CasaUPNA · Trova il tuo alloggio a Pamplona</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════════════ HERO SECTION -->
+  <section id="hero" class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-noise"></div>
+
+    <!-- Status bar iOS style -->
+    <div class="status-bar">
+      <span class="status-time" id="statusTime">22:00</span>
+      <div class="status-icons">
+        <svg width="16" height="11" viewBox="0 0 16 11" fill="currentColor">
+          <rect x="0" y="4" width="3" height="7" rx="1" opacity="0.4"/>
+          <rect x="4.5" y="2.5" width="3" height="8.5" rx="1" opacity="0.6"/>
+          <rect x="9" y="1" width="3" height="10" rx="1" opacity="0.8"/>
+          <rect x="13.5" y="0" width="2.5" height="11" rx="1"/>
+        </svg>
+        <svg width="15" height="11" viewBox="0 0 15 11" fill="currentColor">
+          <path d="M7.5 2.5C9.8 2.5 11.8 3.5 13.2 5.1L14.5 3.7C12.7 1.8 10.2 0.6 7.5 0.6C4.8 0.6 2.3 1.8 0.5 3.7L1.8 5.1C3.2 3.5 5.2 2.5 7.5 2.5Z" opacity="0.4"/>
+          <path d="M7.5 5C9 5 10.4 5.6 11.4 6.6L12.7 5.2C11.3 3.9 9.5 3.1 7.5 3.1C5.5 3.1 3.7 3.9 2.3 5.2L3.6 6.6C4.6 5.6 6 5 7.5 5Z" opacity="0.7"/>
+          <circle cx="7.5" cy="9" r="1.5"/>
+        </svg>
+        <div class="battery-icon">
+          <div class="battery-body">
+            <div class="battery-fill"></div>
+          </div>
+          <div class="battery-cap"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Floating pill nav -->
+    <nav class="pill-nav">
+      <button class="pill-nav-btn active" onclick="showSection('hero')">Home</button>
+      <button class="pill-nav-btn" onclick="showSection('listings')">Alloggi</button>
+      <button class="pill-nav-btn" onclick="showSection('updates')">Novità</button>
+      <button class="pill-nav-btn" onclick="showSection('about')">Info</button>
+    </nav>
+
+    <!-- Hero content -->
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        <span>Partenza · 20 Agosto 2026</span>
+      </div>
+
+      <h1 class="hero-title">
+        Il tuo alloggio<br/>
+        a <span class="gradient-text">Pamplona</span>
+      </h1>
+
+      <p class="hero-subtitle">
+        Camera singola · Cucina privata · Bagno privato<br/>
+        Zona UPNA · Universidad Pública de Navarra
+      </p>
+
+      <div class="hero-stats">
+        <div class="stat-card glass">
+          <span class="stat-number" id="totalListings">8</span>
+          <span class="stat-label">Opzioni trovate</span>
+        </div>
+        <div class="stat-card glass">
+          <span class="stat-number">93</span>
+          <span class="stat-label">Giorni alla partenza</span>
+        </div>
+        <div class="stat-card glass">
+          <span class="stat-number" id="newToday">2</span>
+          <span class="stat-label">Novità oggi</span>
+        </div>
+      </div>
+
+      <button class="cta-button" onclick="showSection('listings')">
+        <span>Esplora gli alloggi</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </button>
+
+      <!-- Scroll hint -->
+      <div class="scroll-hint">
+        <div class="scroll-dot"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════ LISTINGS SECTION -->
+  <section id="listings" class="section listings-section" style="display:none;">
+    <div class="section-header">
+      <button class="back-btn" onclick="showSection('hero')">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M19 12H5M12 19l-7-7 7-7"/>
+        </svg>
+        <span>Indietro</span>
+      </button>
+      <h2 class="section-title">Alloggi disponibili</h2>
+      <p class="section-subtitle">Vicino all'UPNA · Pamplona · Camera singola con servizi privati</p>
+    </div>
+
+    <!-- Filter chips -->
+    <div class="filter-row">
+      <button class="filter-chip active" onclick="filterCards('all', this)">Tutti</button>
+      <button class="filter-chip" onclick="filterCards('top', this)">⭐ Top rated</button>
+      <button class="filter-chip" onclick="filterCards('budget', this)">💶 Budget</button>
+      <button class="filter-chip" onclick="filterCards('new', this)">🆕 Nuovi</button>
+    </div>
+
+    <!-- Cards grid -->
+    <div class="cards-grid" id="cardsGrid">
+      <!-- Cards injected by JS -->
+    </div>
+
+    <!-- Legend -->
+    <div class="legend">
+      <div class="legend-item"><span class="legend-dot green"></span> Consigliato per te</div>
+      <div class="legend-item"><span class="legend-dot amber"></span> Verificare disponibilità</div>
+      <div class="legend-item"><span class="legend-dot red"></span> Non ideale per le tue esigenze</div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════ MODAL DETAIL -->
+  <div id="detailModal" class="modal-overlay" onclick="closeModal(event)">
+    <div class="modal-card">
+      <button class="modal-close" onclick="document.getElementById('detailModal').classList.remove('open')">✕</button>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════ UPDATES SECTION -->
+  <section id="updates" class="section updates-section" style="display:none;">
+    <div class="section-header">
+      <button class="back-btn" onclick="showSection('hero')">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M19 12H5M12 19l-7-7 7-7"/>
+        </svg>
+        <span>Indietro</span>
+      </button>
+      <h2 class="section-title">Novità del giorno</h2>
+      <p class="section-subtitle">Aggiornamenti in tempo reale · Ultima scansione: oggi</p>
+    </div>
+    <div class="updates-list" id="updatesList">
+      <!-- Injected by JS -->
+    </div>
+
+    <!-- Notification setup card -->
+    <div class="notify-card glass">
+      <div class="notify-icon">🔔</div>
+      <h3>Notifiche giornaliere attive</h3>
+      <p>Ogni mattina alle 9:00 riceverai un riepilogo delle nuove opportunità trovate vicino all'UPNA che corrispondono ai tuoi criteri.</p>
+      <div class="notify-toggle">
+        <span>Notifiche browser</span>
+        <label class="toggle-switch">
+          <input type="checkbox" id="notifyToggle" onchange="toggleNotifications()" />
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════ ABOUT SECTION -->
+  <section id="about" class="section about-section" style="display:none;">
+    <div class="section-header">
+      <button class="back-btn" onclick="showSection('hero')">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M19 12H5M12 19l-7-7 7-7"/>
+        </svg>
+        <span>Indietro</span>
+      </button>
+      <h2 class="section-title">I tuoi criteri</h2>
+    </div>
+
+    <div class="criteria-cards">
+      <div class="criteria-card glass">
+        <div class="criteria-icon">🎓</div>
+        <h4>Università</h4>
+        <p>UPNA · Universidad Pública de Navarra, Pamplona</p>
+      </div>
+      <div class="criteria-card glass">
+        <div class="criteria-icon">📅</div>
+        <h4>Partenza</h4>
+        <p>20 Agosto 2026</p>
+      </div>
+      <div class="criteria-card glass">
+        <div class="criteria-icon">🛏</div>
+        <h4>Tipo stanza</h4>
+        <p>Camera singola con cucina e bagno <strong>privati</strong></p>
+      </div>
+      <div class="criteria-card glass">
+        <div class="criteria-icon">📍</div>
+        <h4>Zona</h4>
+        <p>Limitrofa all'UPNA · Pamplona, Navarra</p>
+      </div>
+    </div>
+
+    <div class="methodology glass">
+      <h3>Come valutiamo ogni alloggio</h3>
+      <div class="method-item">
+        <span class="method-dot green"></span>
+        <div>
+          <strong>Consigliato (verde)</strong>
+          <p>Camera singola con bagno e cucina privati, distanza &lt;15 min dall'UPNA, prezzo competitivo, buone recensioni</p>
+        </div>
+      </div>
+      <div class="method-item">
+        <span class="method-dot amber"></span>
+        <div>
+          <strong>Da verificare (giallo)</strong>
+          <p>Soddisfa i criteri principali ma ha qualche limite (prezzo elevato, disponibilità incerta, servizi parziali)</p>
+        </div>
+      </div>
+      <div class="method-item">
+        <span class="method-dot red"></span>
+        <div>
+          <strong>Non ideale (rosso)</strong>
+          <p>Non rispetta uno o più criteri essenziali (bagno condiviso, cucina comune, distanza eccessiva)</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════ TOAST NOTIFICATION -->
+  <div id="toast" class="toast"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>

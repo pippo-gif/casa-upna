@@ -1,0 +1,4 @@
+updates_data.json
+updater.log
+*.pyc
+__pycache__/

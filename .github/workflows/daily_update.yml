@@ -1,0 +1,38 @@
+name: 🏠 CasaUPNA · Aggiornamento giornaliero
+
+on:
+  schedule:
+    # Ogni mattina alle 09:00 ora italiana (UTC+2) = 07:00 UTC
+    - cron: '0 7 * * *'
+  workflow_dispatch:   # permette anche run manuali dal sito GitHub
+
+permissions:
+  contents: write      # necessario per pushare app.js aggiornato
+
+jobs:
+  update:
+    name: Scansione alloggi UPNA
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 🐍 Setup Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 🔍 Esegui scansione e aggiorna app.js
+        run: python updater.py
+
+      - name: 📝 Commit e push se ci sono modifiche
+        run: |
+          git config user.name  "CasaUPNA Bot"
+          git config user.email "casaupna-bot@noreply.github.com"
+          git add app.js updates_data.json updater.log
+          # Commit solo se ci sono modifiche
+          git diff --staged --quiet || git commit -m "🏠 Aggiornamento giornaliero $(date +'%d/%m/%Y %H:%M')"
+          git push
