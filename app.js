@@ -13,15 +13,7 @@ function updateCountdown() {
 }
 updateCountdown();
 
-// ── STATUS BAR CLOCK ───────────────────────────────────────────
-function updateClock() {
-  const el = document.getElementById('statusTime');
-  if (!el) return;
-  const now = new Date();
-  el.textContent = now.toLocaleTimeString('it-IT', { hour: '2-digit', minute: '2-digit', hour12: false });
-}
-updateClock();
-setInterval(updateClock, 10000);
+
 
 // ── SECTION NAVIGATION ─────────────────────────────────────────
 function showSection(id) {
@@ -47,8 +39,9 @@ const accommodations = [
     name: 'Resa Los Abedules',
     emoji: '🌳',
     gradient: 'linear-gradient(135deg, #0a2a0a 0%, #0d1f0d 100%)',
-    address: 'Campus Arrosadía, UPNA',
+    address: 'Campus Arrosadía, Pamplona',
     distance: '0 min a piedi · Sul campus',
+    mapUrl: 'https://www.google.com/maps/search/?api=1&query=Residencia+Universitaria+Los+Abedules+Campus+Arrosadia+Pamplona',
     price: '€ 780',
     priceNum: 780,
     priceNote: '/mese · studio privato',
@@ -56,20 +49,15 @@ const accommodations = [
     rating: 'green',
     ratingLabel: '✦ Consigliato',
     isNew: false,
-    studioAvailable: true,
-    privateBath: true,
-    privateKitchen: true,
     website: 'https://www.resa.es/es/residencias/pamplona/campus-upna',
     phone: '+34 948 16 92 00',
     services: [
       { icon: '🛏', label: 'Studio individuale' },
       { icon: '🚿', label: 'Bagno privato' },
       { icon: '🍳', label: 'Cucina privata' },
-      { icon: '📶', label: 'Wi-Fi incluso' },
       { icon: '🏋️', label: 'Palestra UPNA' },
       { icon: '📚', label: 'Sale studio' },
       { icon: '🧺', label: 'Lavanderia' },
-      { icon: '🚗', label: 'Parcheggio' },
       { icon: '🔒', label: 'Sicurezza 24h' },
       { icon: '♨️', label: 'Riscaldamento incluso' }
     ],
@@ -79,15 +67,16 @@ const accommodations = [
       { label: 'Rapporto qualità/prezzo', val: 72, cls: 'fill-amber' }
     ],
     verdict: 'green',
-    verdictText: '✦ OTTIMA SCELTA · È l\'unica residenza direttamente sul campus UPNA (Arrosadía). Offre studio con cucina e bagno privati, accesso diretto agli impianti sportivi universitari. La posizione è imbattibile: zero tempo di trasporto. Il prezzo è nella media delle residenze di qualità a Pamplona. Consiglio di prenotare il prima possibile: i posti si esauriscono rapidamente.'
+    verdictText: '✦ OTTIMA SCELTA · È l\'unica residenza direttamente sul campus UPNA (Arrosadía). Studio con cucina e bagno privati, accesso diretto agli impianti sportivi. Posizione imbattibile: zero tempo di trasporto. Prenota subito: i posti si esauriscono rapidamente.'
   },
   {
     id: 'camplus-soto',
     name: 'Camplus Soto House',
     emoji: '🏠',
     gradient: 'linear-gradient(135deg, #0a1a2a 0%, #0d1525 100%)',
-    address: 'Soto de Lezkairu, Pamplona',
+    address: 'C/ Soto de Lezkairu, Pamplona',
     distance: '~10 min a piedi da UPNA',
+    mapUrl: 'https://www.google.com/maps/search/?api=1&query=Camplus+Soto+House+Pamplona',
     price: '€ 850',
     priceNum: 850,
     priceNote: '/mese · studio all-inclusive',
@@ -95,11 +84,8 @@ const accommodations = [
     rating: 'green',
     ratingLabel: '✦ Consigliato',
     isNew: true,
-    studioAvailable: true,
-    privateBath: true,
-    privateKitchen: true,
     website: 'https://www.camplus.es/residencias/pamplona/soto-house',
-    phone: '+34 948 00 00 00',
+    phone: null,
     services: [
       { icon: '🛏', label: 'Studio moderno' },
       { icon: '🚿', label: 'Bagno privato' },
@@ -108,9 +94,7 @@ const accommodations = [
       { icon: '❄️', label: 'Climatizzazione' },
       { icon: '🏋️', label: 'Palestra' },
       { icon: '🎬', label: 'Sala cinema' },
-      { icon: '💻', label: 'Co-working' },
-      { icon: '🌿', label: 'Terrazza' },
-      { icon: '📶', label: 'Wi-Fi' }
+      { icon: '💻', label: 'Co-working' }
     ],
     scores: [
       { label: 'Posizione (UPNA)', val: 82, cls: 'fill-green' },
@@ -118,15 +102,16 @@ const accommodations = [
       { label: 'Rapporto qualità/prezzo', val: 68, cls: 'fill-amber' }
     ],
     verdict: 'green',
-    verdictText: '✦ MOLTO BUONA · Camplus Soto House è una delle residenze studentesche più moderne di Pamplona. Studio completamente privato, Smart TV, climatizzazione, palestra, cinema, co-working. A 10 minuti a piedi dall\'UPNA. Prezzo leggermente superiore ma i servizi sono di alto livello. Ideale se cerchi comfort premium oltre alla semplice vicinanza all\'università.'
+    verdictText: '✦ MOLTO BUONA · Residenza moderna con studio completamente privato, Smart TV, climatizzazione, palestra e cinema. A 10 minuti a piedi dall\'UPNA. Prezzo leggermente superiore ma servizi di alto livello.'
   },
   {
     id: 'amro-pamplona',
     name: 'AMRO Pamplona',
     emoji: '🏢',
     gradient: 'linear-gradient(135deg, #1a0a2a 0%, #150d20 100%)',
-    address: 'Trav. de Extremadura, Pamplona',
+    address: 'Travesía de Extremadura, Pamplona',
     distance: '~8 min a piedi da UPNA',
+    mapUrl: 'https://www.google.com/maps/search/?api=1&query=Amro+Estudiantes+Pamplona+Travesia+Extremadura',
     price: '€ 790',
     priceNum: 790,
     priceNote: '/mese · studio privato',
@@ -134,16 +119,12 @@ const accommodations = [
     rating: 'green',
     ratingLabel: '✦ Consigliato',
     isNew: false,
-    studioAvailable: true,
-    privateBath: true,
-    privateKitchen: true,
     website: 'https://www.amroestudiantes.es/pamplona',
-    phone: '+34 948 00 00 00',
+    phone: null,
     services: [
       { icon: '🛏', label: 'Studio individuale' },
       { icon: '🚿', label: 'Bagno privato' },
       { icon: '🍳', label: 'Cucina privata' },
-      { icon: '📶', label: 'Wi-Fi incluso' },
       { icon: '🧺', label: 'Lavanderia' },
       { icon: '💡', label: 'Utenze incluse' },
       { icon: '🔒', label: 'Sicurezza 24h' },
@@ -155,27 +136,25 @@ const accommodations = [
       { label: 'Rapporto qualità/prezzo', val: 82, cls: 'fill-green' }
     ],
     verdict: 'green',
-    verdictText: '✦ BUONA SCELTA · AMRO Pamplona offre un ottimo rapporto qualità/prezzo. Studio con bagno e cucina privati a soli 8 minuti dall\'UPNA a piedi. Prezzo all-inclusive competitivo. Valida alternativa a Resa Los Abedules se quest\'ultima è al completo.'
+    verdictText: '✦ BUONA SCELTA · Ottimo rapporto qualità/prezzo. Studio con bagno e cucina privati a 8 minuti dall\'UPNA a piedi. Prezzo all-inclusive competitivo. Valida alternativa se Resa Los Abedules è al completo.'
   },
   {
     id: 'homeandco',
     name: 'Home & Co Pamplona',
     emoji: '🏡',
     gradient: 'linear-gradient(135deg, #0a1a10 0%, #0d1f18 100%)',
-    address: 'Zona Campus UPNA, Pamplona',
+    address: 'Zona Campus Arrosadía, Pamplona',
     distance: '~5 min a piedi da UPNA',
+    mapUrl: 'https://www.google.com/maps/search/?api=1&query=Home+and+Co+Pamplona+Arrosadia',
     price: '€ 820',
     priceNum: 820,
     priceNote: '/mese · studio / singola privata',
     type: ['top'],
-    rating: 'green',
-    ratingLabel: '✦ Consigliato',
+    rating: 'amber',
+    ratingLabel: '◎ Verifica cucina',
     isNew: true,
-    studioAvailable: true,
-    privateBath: true,
-    privateKitchen: false,
     website: 'https://www.homeand.co/pamplona',
-    phone: '+34 948 00 00 00',
+    phone: null,
     services: [
       { icon: '🛏', label: 'Camera singola' },
       { icon: '🚿', label: 'Bagno privato' },
@@ -183,7 +162,6 @@ const accommodations = [
       { icon: '🏋️', label: 'Palestra moderna' },
       { icon: '🎬', label: 'Sala cinema' },
       { icon: '💻', label: 'Co-working' },
-      { icon: '📶', label: 'Wi-Fi veloce' },
       { icon: '🧺', label: 'Lavanderia' }
     ],
     scores: [
@@ -192,15 +170,16 @@ const accommodations = [
       { label: 'Cucina privata', val: 50, cls: 'fill-amber' }
     ],
     verdict: 'amber',
-    verdictText: '⚠ DA VERIFICARE · Home & Co è molto vicina all\'UPNA e offre strutture eccellenti. Attenzione: alcuni piani offrono kitchenette privata, altri cucina condivisa. Contatta direttamente per confermare la disponibilità di uno studio con cucina privata. Se disponibile, è un\'ottima scelta per posizione e servizi.'
+    verdictText: '⚠ DA VERIFICARE · Vicinissima all\'UPNA con strutture eccellenti. Attenzione: alcuni piani offrono kitchenette privata, altri cucina condivisa. Contatta per confermare la disponibilità di uno studio con cucina privata.'
   },
   {
     id: 'livensa-pamplona',
     name: 'Livensa Living Pamplona',
     emoji: '✨',
     gradient: 'linear-gradient(135deg, #1a1a0a 0%, #201f0d 100%)',
-    address: 'Pamplona (zona Iturrama)',
+    address: 'C/ Iturrama, Pamplona',
     distance: '~20-25 min bus da UPNA',
+    mapUrl: 'https://www.google.com/maps/search/?api=1&query=Livensa+Living+Pamplona+Iturrama',
     price: '€ 750',
     priceNum: 750,
     priceNote: '/mese · studio completo',
@@ -208,17 +187,13 @@ const accommodations = [
     rating: 'amber',
     ratingLabel: '◎ Verifica distanza',
     isNew: false,
-    studioAvailable: true,
-    privateBath: true,
-    privateKitchen: true,
     website: 'https://www.livensaliving.com/en/properties/pamplona',
-    phone: '+34 948 00 00 00',
+    phone: null,
     services: [
       { icon: '🛏', label: 'Studio individuale' },
       { icon: '🚿', label: 'Bagno privato' },
       { icon: '🍳', label: 'Cucina privata' },
       { icon: '❄️', label: 'Climatizzazione' },
-      { icon: '📶', label: 'Wi-Fi' },
       { icon: '🏋️', label: 'Palestra' },
       { icon: '🚌', label: 'Bus per UPNA' },
       { icon: '💡', label: 'Utenze incluse' }
@@ -229,15 +204,16 @@ const accommodations = [
       { label: 'Rapporto qualità/prezzo', val: 90, cls: 'fill-green' }
     ],
     verdict: 'amber',
-    verdictText: '⚠ DA VERIFICARE PER DISTANZA · Studio completo con tutti i servizi privati a prezzo più competitivo. Il punto debole è la distanza dall\'UPNA: zona Iturrama richiede 20-25 min di bus. Se la prossimità al campus non è la tua priorità assoluta e vuoi risparmiare, è un\'opzione valida. Verifica i collegamenti bus con la linea per Arrosadía.'
+    verdictText: '⚠ DISTANZA DA VALUTARE · Studio completo con tutti i servizi privati al prezzo più basso. Il punto debole è la zona Iturrama: 20-25 min di bus dall\'UPNA. Ottimo se il budget è prioritario rispetto alla prossimità.'
   },
   {
     id: 'stephouse',
-    name: 'StepHouse Pamplona Monjardin',
+    name: 'StepHouse Monjardin',
     emoji: '🪜',
     gradient: 'linear-gradient(135deg, #0a1520 0%, #0d1a28 100%)',
-    address: 'Monjardin, Pamplona',
+    address: 'Barrio Monjardin, Pamplona',
     distance: '~12 min a piedi da UPNA',
+    mapUrl: 'https://www.google.com/maps/search/?api=1&query=StepHouse+Monjardin+Pamplona',
     price: '€ 760',
     priceNum: 760,
     priceNote: '/mese · studio privato',
@@ -245,9 +221,6 @@ const accommodations = [
     rating: 'green',
     ratingLabel: '✦ Consigliato',
     isNew: false,
-    studioAvailable: true,
-    privateBath: true,
-    privateKitchen: true,
     website: 'https://uniscopio.com/pamplona',
     phone: null,
     services: [
@@ -256,7 +229,6 @@ const accommodations = [
       { icon: '🍳', label: 'Cucina privata' },
       { icon: '📺', label: 'Smart TV' },
       { icon: '❄️', label: 'Climatizzazione' },
-      { icon: '📶', label: 'Wi-Fi' },
       { icon: '💡', label: 'Utenze incluse' }
     ],
     scores: [
@@ -265,15 +237,16 @@ const accommodations = [
       { label: 'Rapporto qualità/prezzo', val: 88, cls: 'fill-green' }
     ],
     verdict: 'green',
-    verdictText: '✦ BUONA SCELTA ECONOMICA · Studio con tutti i requisiti richiesti (bagno e cucina privati) a prezzo competitivo. Smart TV e climatizzazione inclusi. A 12 minuti a piedi dall\'UPNA, percorribile comodamente. Verifica disponibilità direttamente su Uniscopio o contatta la struttura.'
+    verdictText: '✦ BUONA SCELTA ECONOMICA · Studio completo (bagno + cucina privati) a prezzo competitivo. Smart TV e climatizzazione inclusi. 12 minuti a piedi dall\'UPNA — percorso molto facile.'
   },
   {
     id: 'uniplaces',
-    name: 'Appartamenti privati · Uniplaces',
+    name: 'Uniplaces · Appartamenti Pamplona',
     emoji: '🔑',
     gradient: 'linear-gradient(135deg, #1a0a0a 0%, #200d0d 100%)',
     address: 'Varie zone limitrofe UPNA',
     distance: 'Variabile · filtra per zona',
+    mapUrl: 'https://www.google.com/maps/search/?api=1&query=Campus+Arrosadia+UPNA+Pamplona',
     price: '€ 600–900',
     priceNum: 700,
     priceNote: '/mese · dipende dal contratto',
@@ -281,9 +254,6 @@ const accommodations = [
     rating: 'amber',
     ratingLabel: '◎ Piattaforma',
     isNew: false,
-    studioAvailable: true,
-    privateBath: true,
-    privateKitchen: true,
     website: 'https://www.uniplaces.com/accommodation/pamplona',
     phone: null,
     services: [
@@ -300,15 +270,16 @@ const accommodations = [
       { label: 'Garanzie', val: 65, cls: 'fill-amber' }
     ],
     verdict: 'amber',
-    verdictText: '◎ PIATTAFORMA AGGREGATRICE · Uniplaces aggrega appartamenti e studi privati a Pamplona. Puoi filtrare per zona (cerca "Arrosadía" o "Campus UPNA"), tipo (studio/monolocale), bagno privato, prezzo. Più flessibilità rispetto alle residenze ma meno servizi inclusi. Utile per confrontare prezzi e trovare monolocali indipendenti vicino al campus.'
+    verdictText: '◎ PIATTAFORMA · Aggrega monolocali e studi privati a Pamplona. Filtra per "Arrosadía", bagno privato e prezzo. Più flessibilità rispetto alle residenze, meno servizi inclusi.'
   },
   {
     id: 'spotahome',
-    name: 'Appartamenti privati · Spotahome',
+    name: 'Spotahome · Appartamenti Pamplona',
     emoji: '🏘',
     gradient: 'linear-gradient(135deg, #0a0a1a 0%, #0d0d20 100%)',
     address: 'Varie zone Pamplona',
     distance: 'Variabile · filtra per zona',
+    mapUrl: 'https://www.google.com/maps/search/?api=1&query=Campus+Arrosadia+UPNA+Pamplona',
     price: '€ 550–850',
     priceNum: 650,
     priceNote: '/mese · dipende dall\'offerta',
@@ -316,9 +287,6 @@ const accommodations = [
     rating: 'amber',
     ratingLabel: '◎ Piattaforma',
     isNew: false,
-    studioAvailable: true,
-    privateBath: true,
-    privateKitchen: true,
     website: 'https://www.spotahome.com/es/alquiler/pamplona/pisos-y-apartamentos/pamplona',
     phone: null,
     services: [
@@ -335,7 +303,7 @@ const accommodations = [
       { label: 'Prezzo medio', val: 80, cls: 'fill-green' }
     ],
     verdict: 'amber',
-    verdictText: '◎ PIATTAFORMA AFFIDABILE · Spotahome ha video tour virtuali verificati di ogni appartamento, riducendo le sorprese. Cerca "monolocale Pamplona Arrosadía" per trovare studi vicini all\'UPNA. Supporta italiani (interfaccia in italiano). Prezzi spesso inferiori alle residenze gestite. Ideale come seconda opzione se le residenze sono piene.'
+    verdictText: '◎ PIATTAFORMA AFFIDABILE · Video tour virtuali verificati per ogni appartamento. Cerca "monolocale Pamplona Arrosadía". Interfaccia in italiano, prezzi spesso inferiori alle residenze gestite.'
   }
 ];
 
@@ -352,7 +320,7 @@ function renderCards(data) {
     card.setAttribute('data-type', acc.type.join(' '));
     card.onclick = () => openModal(acc);
 
-    const amenityList = acc.services.slice(0, 4).map(s =>
+    const amenityList = acc.services.slice(0, 3).map(s =>
       `<span class="amenity-pill check">${s.icon} ${s.label}</span>`
     ).join('');
 
@@ -362,7 +330,7 @@ function renderCards(data) {
         <div class="card-img-gradient" style="background:linear-gradient(to bottom, transparent 40%, rgba(14,14,22,0.95) 100%)"></div>
       </div>
       <div class="card-score-badge ${acc.rating}">${acc.ratingLabel}</div>
-      ${acc.isNew ? '<div class="card-new-badge">🆕 Nuovo</div>' : ''}
+      ${acc.isNew ? '<div class="card-new-badge">Nuovo</div>' : ''}
       <div class="card-body">
         <div class="card-name">${acc.name}</div>
         <div class="card-location">📍 ${acc.distance}</div>
@@ -372,10 +340,16 @@ function renderCards(data) {
             <span class="price-amount">${acc.price}</span>
             <span class="price-label">${acc.priceNote}</span>
           </div>
-          <a class="card-link-btn" href="${acc.website}" target="_blank" onclick="e => e.stopPropagation()">
-            Visita sito
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
-          </a>
+          <div class="card-actions">
+            <a class="card-map-btn" href="${acc.mapUrl}" target="_blank" onclick="event.stopPropagation()" title="Vedi su Maps">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+              Maps
+            </a>
+            <a class="card-link-btn" href="${acc.website}" target="_blank" onclick="event.stopPropagation()">
+              Sito
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+            </a>
+          </div>
         </div>
       </div>
     `;
@@ -431,6 +405,18 @@ function openModal(acc) {
 
     <div class="modal-verdict ${acc.verdict}">${acc.verdictText}</div>
 
+    <div class="modal-section-title">Posizione su mappa</div>
+    <a class="modal-map-preview" href="${acc.mapUrl}" target="_blank">
+      <div class="map-preview-inner">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+        <div>
+          <div class="map-preview-addr">${acc.address}</div>
+          <div class="map-preview-sub">${acc.distance} · Apri in Google Maps</div>
+        </div>
+        <svg class="map-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </div>
+    </a>
+
     <div class="modal-section-title">Punteggi obiettivi</div>
     ${scoreBars}
 
@@ -442,7 +428,7 @@ function openModal(acc) {
 
     <div class="modal-cta">
       <a class="modal-btn-primary" href="${acc.website}" target="_blank">
-        🌐 Visita sito ufficiale
+        Visita sito ufficiale
       </a>
       ${phoneBtn}
     </div>
