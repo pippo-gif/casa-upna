@@ -465,49 +465,40 @@ document.addEventListener('keydown', e => {
 // ── UPDATES SECTION ─────────────────────────────────────────────
 const updates = [
   {
-    icon: '🔍',
-    iconClass: 'blue',
-    title: 'Resa Los Abedules — disponibilità confermata',
-    desc: 'Studio con bagno e cucina privati disponibile per settembre 2026. Contatta per prenotare.',
-    time: 'Oggi · 21:50',
-    url: 'https://www.resa.es/es/residencias/pamplona/campus-upna',
-    urlLabel: 'Prenota ora'
+    icon: "green",
+    iconClass: "green",
+    title: "Resa Los Abedules - 20/05/2026",
+    desc: "Resa Los Abedules - 20/05/2026 | Disponibile - verifica subito! | Prezzo stimato: 699 EUR/mese",
+    time: "Oggi - 19:49",
+    url: "https://www.resa.es/es/residencias/pamplona/campus-upna",
+    urlLabel: "Vedi sito"
   },
   {
-    icon: '🆕',
-    iconClass: 'green',
-    title: 'Camplus Soto House — nuova apertura prenotazioni',
-    desc: 'Aperti i booking per agosto 2026. Studi moderni con Smart TV e climatizzazione. Prezzi da €850/mese.',
-    time: 'Oggi · 20:30',
-    url: 'https://www.camplus.es/residencias/pamplona/soto-house',
-    urlLabel: 'Vedi studi disponibili'
+    icon: "green",
+    iconClass: "green",
+    title: "AMRO Pamplona - 20/05/2026",
+    desc: "AMRO Pamplona - 20/05/2026 | Disponibile - verifica subito! | Prezzo stimato: 999 EUR/mese",
+    time: "Oggi - 19:49",
+    url: "https://www.amroestudiantes.es/pamplona",
+    urlLabel: "Vedi sito"
   },
   {
-    icon: '⭐',
-    iconClass: 'amber',
-    title: 'Home & Co Pamplona — apertura iscrizioni',
-    desc: 'Nuova residenza vicino all\'UPNA. Verifica se disponibili studi con cucina privata (alcune camere hanno solo kitchenette).',
-    time: 'Ieri · 15:10',
-    url: 'https://www.homeand.co/pamplona',
-    urlLabel: 'Verifica disponibilità'
+    icon: "green",
+    iconClass: "green",
+    title: "Resa Los Abedules - 20/05/2026",
+    desc: "Resa Los Abedules - 20/05/2026 | Disponibile - verifica subito! | Prezzo stimato: 699 EUR/mese",
+    time: "Oggi - 19:49",
+    url: "https://www.resa.es/es/residencias/pamplona/campus-upna",
+    urlLabel: "Vedi sito"
   },
   {
-    icon: '💡',
-    iconClass: 'blue',
-    title: 'Consiglio: Bolsa de Alojamiento UPNA',
-    desc: 'La stessa università pubblica una borsa alloggi ufficiale. Controlla periodicamente per offerte private vicino al campus.',
-    time: 'Ieri · 09:00',
-    url: 'https://www.unavarra.es/vida-universitaria/alojamiento',
-    urlLabel: 'Portale UPNA'
-  },
-  {
-    icon: '📊',
-    iconClass: 'amber',
-    title: 'Analisi prezzi maggio 2026',
-    desc: 'Prezzo medio studio privato con bagno vicino UPNA: €780-850/mese all-inclusive. Risparmio medio vs. appartamento privato: ~15%.',
-    time: '2 giorni fa',
-    url: 'https://uniscopio.com/pamplona',
-    urlLabel: 'Confronta prezzi'
+    icon: "green",
+    iconClass: "green",
+    title: "AMRO Pamplona - 20/05/2026",
+    desc: "AMRO Pamplona - 20/05/2026 | Disponibile - verifica subito! | Prezzo stimato: 999 EUR/mese",
+    time: "Oggi - 19:49",
+    url: "https://www.amroestudiantes.es/pamplona",
+    urlLabel: "Vedi sito"
   }
 ];
 
