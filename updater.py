@@ -15,6 +15,7 @@ import sys
 import ssl
 import datetime
 import logging
+import hashlib
 import traceback
 from pathlib import Path
 
@@ -24,8 +25,10 @@ LOG_FILE   = BASE_DIR / "updater.log"
 APPJS_FILE = BASE_DIR / "app.js"
 DATA_FILE  = BASE_DIR / "updates_data.json"
 
+# Logghiamo su stdout: il .bat redirige stdout >> updater.log
+# evitando il PermissionError da doppia apertura del file.
 logging.basicConfig(
-    filename=str(LOG_FILE),
+    stream=sys.stdout,
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(message)s",
     datefmt="%Y-%m-%d %H:%M:%S"
@@ -51,25 +54,25 @@ SITES = [
     {
         "id":       "camplus-soto",
         "name":     "Camplus Soto House",
-        "url":      "https://www.camplus.es/residencias/pamplona/soto-house",
+        "url":      "https://www.camplus.es/residencias/pamplona/",
         "keywords": ["studio", "disponible", "reserva", "privado", "habitacion"],
     },
     {
         "id":       "amro",
         "name":     "AMRO Pamplona",
-        "url":      "https://www.amroestudiantes.es/pamplona",
+        "url":      "https://www.amroestudiantes.es/residencias/pamplona/",
         "keywords": ["estudio", "disponible", "plaza", "privado"],
     },
     {
         "id":       "homeandco",
         "name":     "Home and Co Pamplona",
-        "url":      "https://www.homeand.co/pamplona",
+        "url":      "https://homeandcoliving.com/es/pamplona/",
         "keywords": ["available", "studio", "room", "private", "book"],
     },
     {
         "id":       "livensa",
         "name":     "Livensa Living Pamplona",
-        "url":      "https://www.livensaliving.com/en/properties/pamplona",
+        "url":      "https://www.livensaliving.com/es/residencias/pamplona/",
         "keywords": ["studio", "available", "private", "book", "reserve"],
     },
     {
@@ -138,7 +141,8 @@ def search_duckduckgo(query):
 
 
 def make_hash(text):
-    return str(abs(hash(text[:80])))
+    """Hash deterministico (sha256) — non cambia tra sessioni Python."""
+    return hashlib.sha256(text[:80].encode("utf-8")).hexdigest()[:16]
 
 
 def load_existing_data():
@@ -195,11 +199,11 @@ def run_daily_scan():
 
         seen.add(h)
         new_items.append({
-            "icon":      "green" if avail else "amber",
+            "icon":      "",
             "iconClass": "green" if avail else "amber",
-            "title":     "{} - {}".format(site["name"], today_str),
+            "title":     "{} — aggiornamento {}".format(site["name"], today_str),
             "desc":      summary,
-            "time":      "Oggi - " + now_str,
+            "time":      "Oggi · " + now_str,
             "url":       site["url"],
             "urlLabel":  "Vedi sito"
         })
@@ -218,11 +222,11 @@ def run_daily_scan():
             seen.add(h)
             url_val = r["url"] if r["url"].startswith("http") else "#"
             new_items.append({
-                "icon":      "blue",
+                "icon":      "",
                 "iconClass": "blue",
                 "title":     r["title"][:80],
                 "desc":      r["snippet"][:180],
-                "time":      "Oggi - " + now_str,
+                "time":      "Oggi · " + now_str,
                 "url":       url_val,
                 "urlLabel":  "Apri link"
             })
@@ -231,11 +235,11 @@ def run_daily_scan():
     # 3. Fallback voce "nessuna novita"
     if not new_items:
         new_items.append({
-            "icon":      "blue",
+            "icon":      "",
             "iconClass": "blue",
-            "title":     "Scansione completata - " + today_str,
+            "title":     "Scansione completata · " + today_str,
             "desc":      "Nessuna nuova disponibilita rilevata oggi. Tutti i siti monitorati sono stati controllati.",
-            "time":      "Oggi - " + now_str,
+            "time":      "Oggi · " + now_str,
             "url":       "https://uniscopio.com/residencias-universitarias/pamplona",
             "urlLabel":  "Cerca manualmente"
         })
@@ -294,7 +298,7 @@ def patch_appjs(new_items, all_updates):
         return
 
     content   = APPJS_FILE.read_text(encoding="utf-8")
-    feed      = (new_items + all_updates)[:20]
+    feed      = all_updates[:20]
     new_block = build_updates_block(feed)
 
     pattern = r"const updates\s*=\s*\[[\s\S]*?\];"

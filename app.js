@@ -294,7 +294,7 @@ const accommodations = [
       { icon: '🎥', label: 'Video tour 3D' },
       { icon: '🚿', label: 'Filtra bagno privato' },
       { icon: '🍳', label: 'Cucina inclusa' },
-      { icon: '✅', label: 'Verificato Spotahome' },
+      { icon: "", label: 'Verificato Spotahome' },
       { icon: '📞', label: 'Supporto italiano' }
     ],
     scores: [
@@ -451,40 +451,139 @@ document.addEventListener('keydown', e => {
 // ── UPDATES SECTION ─────────────────────────────────────────────
 const updates = [
   {
-    icon: "green",
+    icon: "",
+    iconClass: "blue",
+    title: "Scansione completata · 20/05/2026",
+    desc: "Nessuna nuova disponibilita rilevata oggi. Tutti i siti monitorati sono stati controllati.",
+    time: "Oggi · 22:31",
+    url: "https://uniscopio.com/residencias-universitarias/pamplona",
+    urlLabel: "Cerca manualmente"
+  },
+  {
+    icon: "✅",
     iconClass: "green",
-    title: "Resa Los Abedules - 20/05/2026",
+    title: "Resa Los Abedules — aggiornamento 20/05/2026",
     desc: "Resa Los Abedules - 20/05/2026 | Disponibile - verifica subito! | Prezzo stimato: 699 EUR/mese",
-    time: "Oggi - 19:49",
+    time: "Oggi · 22:28",
     url: "https://www.resa.es/es/residencias/pamplona/campus-upna",
     urlLabel: "Vedi sito"
   },
   {
-    icon: "green",
+    icon: "✅",
     iconClass: "green",
-    title: "AMRO Pamplona - 20/05/2026",
+    title: "AMRO Pamplona — aggiornamento 20/05/2026",
     desc: "AMRO Pamplona - 20/05/2026 | Disponibile - verifica subito! | Prezzo stimato: 999 EUR/mese",
-    time: "Oggi - 19:49",
-    url: "https://www.amroestudiantes.es/pamplona",
+    time: "Oggi · 22:28",
+    url: "https://www.amroestudiantes.es/residencias/pamplona/",
     urlLabel: "Vedi sito"
   },
   {
-    icon: "green",
+    icon: "blue",
+    iconClass: "blue",
+    title: "Scansione completata - 20/05/2026",
+    desc: "Nessuna nuova disponibilita rilevata oggi. Tutti i siti monitorati sono stati controllati.",
+    time: "Oggi - 20:20",
+    url: "https://uniscopio.com/residencias-universitarias/pamplona",
+    urlLabel: "Cerca manualmente"
+  },
+  {
+    icon: "✅",
     iconClass: "green",
-    title: "Resa Los Abedules - 20/05/2026",
-    desc: "Resa Los Abedules - 20/05/2026 | Disponibile - verifica subito! | Prezzo stimato: 699 EUR/mese",
-    time: "Oggi - 19:49",
+    title: "Resa Los Abedules — aggiornamento 19/05/2026",
+    desc: "Resa Los Abedules — keyword trovate: estudio, disponible, reserva. Sembra disponibile. Prezzo: € 582/mese",
+    time: "Oggi · 22:29",
     url: "https://www.resa.es/es/residencias/pamplona/campus-upna",
     urlLabel: "Vedi sito"
   },
   {
-    icon: "green",
+    icon: "✅",
     iconClass: "green",
-    title: "AMRO Pamplona - 20/05/2026",
-    desc: "AMRO Pamplona - 20/05/2026 | Disponibile - verifica subito! | Prezzo stimato: 999 EUR/mese",
-    time: "Oggi - 19:49",
-    url: "https://www.amroestudiantes.es/pamplona",
+    title: "Uniscopio Pamplona — aggiornamento 19/05/2026",
+    desc: "Uniscopio Pamplona — keyword trovate: baño privado, estudio, individual. Sembra disponibile. Prezzo: € 630/mese",
+    time: "Oggi · 22:30",
+    url: "https://uniscopio.com/residencias-universitarias/pamplona",
     urlLabel: "Vedi sito"
+  },
+  {
+    icon: "🔗",
+    iconClass: "blue",
+    title: "Albergue Residencia, Pamplona - Miglior Prezzo Garantito.",
+    desc: "Albergue Residencia, Pamplona. Assistenza Clienti - tutti i giorni 24h.\n                      \n\n                      \n                    \n                  \n                \n    ",
+    time: "Oggi · 22:30",
+    url: "#",
+    urlLabel: "Apri link"
+  },
+  {
+    icon: "🔗",
+    iconClass: "blue",
+    title: "Residencia Universitaria HOME &amp; CO Pamplona - 【Actualizado 2026 】",
+    desc: "Te invitamos a descubrir la residencia universitaria HOME &amp; CO Pamplona, una residencia totalmente nueva y a un paso de la Universidad Pública de Navarra, además cuenta con exc",
+    time: "Oggi · 22:30",
+    url: "#",
+    urlLabel: "Apri link"
+  },
+  {
+    icon: "🔗",
+    iconClass: "blue",
+    title: "Residencia Universitaria para Estudiantes en Pamplona | Amro",
+    desc: "Nueva residencia universitaria en Pamplona muy cerca de la Universidad Pública de Navarra (UPNA). Residencia estudiantil en Pamplona cerca de la UNAV y la ESIC y Sonograf en plena ",
+    time: "Oggi · 22:30",
+    url: "#",
+    urlLabel: "Apri link"
+  },
+  {
+    icon: "🔗",
+    iconClass: "blue",
+    title: "Universidad Pública de Navarra - Campus de Excelencia Internacional",
+    desc: "Alojamiento y residenciasAlojamiento y residencias &gt; BUSCO ALOJAMIENTO En nuestra bolsa de alojamiento encontrará información sobre alojamiento en residencias para estudiantes, ",
+    time: "Oggi · 22:30",
+    url: "#",
+    urlLabel: "Apri link"
+  },
+  {
+    icon: "🔗",
+    iconClass: "blue",
+    title: "Residencias Universitarias en la Universidad Pública de Navarra",
+    desc: "Residencia Camplus Pamplona La Campana Es una residencia mixta situada en el centro de la ciudad, cerca de de la Universidad de Navarra (UNAV) y la Universidad Pública de Navarra (",
+    time: "Oggi · 22:30",
+    url: "#",
+    urlLabel: "Apri link"
+  },
+  {
+    icon: "🔗",
+    iconClass: "blue",
+    title: "Residencia Los Abedules - Pamplona. Prenota Ora.",
+    desc: "Residencia Los Abedules, Pamplona. Miglior Prezzo Garantito.\n                      \n\n                      \n                    \n                  \n                \n              \n",
+    time: "Oggi · 22:30",
+    url: "#",
+    urlLabel: "Apri link"
+  },
+  {
+    icon: "🔗",
+    iconClass: "blue",
+    title: "10 habitaciones en alquiler en Arrosadia, Pamplona/Iruña - idealista",
+    desc: "Habitaciones en alquiler en Pamplona/Iruña - Arrosadia, a partir de 300 euros de particulares e inmobiliarias. Alquiler habitaciones en Pamplona/Iruña - Arrosadia: anuncios de part",
+    time: "Oggi · 22:30",
+    url: "#",
+    urlLabel: "Apri link"
+  },
+  {
+    icon: "🔗",
+    iconClass: "blue",
+    title: "Residencia universitaria para estudiantes en Pamplona - RESA",
+    desc: "En la UPNA - Estudios c/cocina desde 463€/mes - Residencia Universitaria para estudiantes Los Abedules en Pamplona. ¡Reserva ya tu plaza!\n                      \n                   ",
+    time: "Oggi · 22:30",
+    url: "#",
+    urlLabel: "Apri link"
+  },
+  {
+    icon: "🔗",
+    iconClass: "blue",
+    title: "Residencias Universitarias en Campus de Arrosadía",
+    desc: "La Residencia Universitaria UNIDO es un alojamiento ubicado en el centro de la ciudad, muy bien conectado con las principales universidades y campus de la zona. Su localización te ",
+    time: "Oggi · 22:30",
+    url: "#",
+    urlLabel: "Apri link"
   }
 ];
 
