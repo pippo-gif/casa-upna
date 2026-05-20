@@ -2,12 +2,19 @@ name: 🏠 CasaUPNA · Aggiornamento giornaliero
 
 on:
   schedule:
-    # Ogni mattina alle 09:00 ora italiana (UTC+2) = 07:00 UTC
+    # 07:00 UTC = 09:00 ora italiana (CEST)
+    # Eseguiamo anche a 08:00 UTC come backup se GitHub ritarda
     - cron: '0 7 * * *'
-  workflow_dispatch:   # permette anche run manuali dal sito GitHub
+    - cron: '0 8 * * *'
+  workflow_dispatch:   # run manuale dal sito GitHub in qualsiasi momento
+
+# Evita run paralleli: se il primo slot ritarda e si sovrappone al backup, cancella il vecchio
+concurrency:
+  group: daily-update
+  cancel-in-progress: false
 
 permissions:
-  contents: write      # necessario per pushare app.js aggiornato
+  contents: write
 
 jobs:
   update:
@@ -32,7 +39,6 @@ jobs:
         run: |
           git config user.name  "CasaUPNA Bot"
           git config user.email "casaupna-bot@noreply.github.com"
-          git add app.js updates_data.json updater.log
-          # Commit solo se ci sono modifiche
-          git diff --staged --quiet || git commit -m "🏠 Aggiornamento giornaliero $(date +'%d/%m/%Y %H:%M')"
-          git push
+          git add app.js updates_data.json updater.log || true
+          git diff --staged --quiet || git commit -m "🏠 Aggiornamento $(date +'%d/%m/%Y %H:%M UTC')"
+          git push || true
