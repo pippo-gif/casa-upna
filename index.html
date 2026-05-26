@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Trova il miglior alloggio studentesco vicino all'UPNA di Pamplona. Camera singola con bagno e cucina privati." />
+  <meta name="description" content="Trova il miglior alloggio studentesco vicino all'UPNA di Pamplona. Residenze, studentati, piattaforme — database completo per Erasmus." />
   <title>CasaUPNA · Trova il tuo alloggio a Pamplona</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -17,12 +17,11 @@
     <div class="hero-bg"></div>
     <div class="hero-noise"></div>
 
-
     <!-- Floating pill nav -->
     <nav class="pill-nav">
       <button class="pill-nav-btn active" onclick="showSection('hero')">Home</button>
       <button class="pill-nav-btn" onclick="showSection('listings')">Alloggi</button>
-      <button class="pill-nav-btn" onclick="showSection('updates')">Novità</button>
+      <button class="pill-nav-btn" onclick="showSection('guide')">Guida</button>
       <button class="pill-nav-btn" onclick="showSection('about')">Info</button>
     </nav>
 
@@ -39,22 +38,22 @@
       </h1>
 
       <p class="hero-subtitle">
-        Camera singola · Cucina privata · Bagno privato<br/>
+        Residenze · Studentati · Collegi · Piattaforme<br/>
         Zona UPNA · Universidad Pública de Navarra
       </p>
 
       <div class="hero-stats">
         <div class="stat-card glass">
-          <span class="stat-number" id="totalListings">8</span>
+          <span class="stat-number" id="totalListings">16</span>
           <span class="stat-label">Opzioni trovate</span>
         </div>
         <div class="stat-card glass">
-          <span class="stat-number">93</span>
+          <span class="stat-number" id="daysLeft">86</span>
           <span class="stat-label">Giorni alla partenza</span>
         </div>
         <div class="stat-card glass">
-          <span class="stat-number" id="newToday">2</span>
-          <span class="stat-label">Novità oggi</span>
+          <span class="stat-number" id="campusCount">7</span>
+          <span class="stat-label">Entro 15 min UPNA</span>
         </div>
       </div>
 
@@ -82,15 +81,16 @@
         <span>Indietro</span>
       </button>
       <h2 class="section-title">Alloggi disponibili</h2>
-      <p class="section-subtitle">Vicino all'UPNA · Pamplona · Camera singola con servizi privati</p>
+      <p class="section-subtitle">Vicino all'UPNA · Pamplona · Residenze, studentati, collegi e piattaforme</p>
     </div>
 
     <!-- Filter chips -->
     <div class="filter-row">
       <button class="filter-chip active" onclick="filterCards('all', this)">Tutti</button>
-      <button class="filter-chip" onclick="filterCards('top', this)">⭐ Top rated</button>
+      <button class="filter-chip" onclick="filterCards('top', this)">⭐ Consigliati</button>
+      <button class="filter-chip" onclick="filterCards('campus', this)">🏫 Vicino UPNA</button>
       <button class="filter-chip" onclick="filterCards('budget', this)">💶 Budget</button>
-      <button class="filter-chip" onclick="filterCards('new', this)">🆕 Nuovi</button>
+      <button class="filter-chip" onclick="filterCards('platform', this)">🔗 Piattaforme</button>
     </div>
 
     <!-- Cards grid -->
@@ -100,8 +100,8 @@
 
     <!-- Legend -->
     <div class="legend">
-      <div class="legend-item"><span class="legend-dot green"></span> Consigliato per te</div>
-      <div class="legend-item"><span class="legend-dot amber"></span> Verificare disponibilità</div>
+      <div class="legend-item"><span class="legend-dot green"></span> Consigliato per Erasmus</div>
+      <div class="legend-item"><span class="legend-dot amber"></span> Verifica disponibilità/dettagli</div>
       <div class="legend-item"><span class="legend-dot red"></span> Non ideale per le tue esigenze</div>
     </div>
   </section>
@@ -114,8 +114,8 @@
     </div>
   </div>
 
-  <!-- ═══════════════════════════════════════════════════════ UPDATES SECTION -->
-  <section id="updates" class="section updates-section" style="display:none;">
+  <!-- ═══════════════════════════════════════════════════════ GUIDE SECTION -->
+  <section id="guide" class="section guide-section" style="display:none;">
     <div class="section-header">
       <button class="back-btn" onclick="showSection('hero')">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
@@ -123,25 +123,11 @@
         </svg>
         <span>Indietro</span>
       </button>
-      <h2 class="section-title">Novità del giorno</h2>
-      <p class="section-subtitle">Aggiornamenti in tempo reale · Ultima scansione: oggi</p>
+      <h2 class="section-title">Guida Erasmus</h2>
+      <p class="section-subtitle">Tutto quello che devi sapere per trovare casa a Pamplona</p>
     </div>
-    <div class="updates-list" id="updatesList">
+    <div class="guide-content" id="guideContent">
       <!-- Injected by JS -->
-    </div>
-
-    <!-- Notification setup card -->
-    <div class="notify-card glass">
-      <div class="notify-icon">🔔</div>
-      <h3>Notifiche giornaliere attive</h3>
-      <p>Ogni mattina alle 9:00 riceverai un riepilogo delle nuove opportunità trovate vicino all'UPNA che corrispondono ai tuoi criteri.</p>
-      <div class="notify-toggle">
-        <span>Notifiche browser</span>
-        <label class="toggle-switch">
-          <input type="checkbox" id="notifyToggle" onchange="toggleNotifications()" />
-          <span class="toggle-slider"></span>
-        </label>
-      </div>
     </div>
   </section>
 
@@ -176,7 +162,7 @@
       <div class="criteria-card glass">
         <div class="criteria-icon">📍</div>
         <h4>Zona</h4>
-        <p>Limitrofa all'UPNA · Pamplona, Navarra</p>
+        <p>Limitrofa all'UPNA · Campus Arrosadía, Pamplona</p>
       </div>
     </div>
 
@@ -186,22 +172,46 @@
         <span class="method-dot green"></span>
         <div>
           <strong>Consigliato (verde)</strong>
-          <p>Camera singola con bagno e cucina privati, distanza &lt;15 min dall'UPNA, prezzo competitivo, buone recensioni</p>
+          <p>Bagno e cucina privati, distanza &lt;15 min dall'UPNA, prezzo competitivo, struttura affidabile</p>
         </div>
       </div>
       <div class="method-item">
         <span class="method-dot amber"></span>
         <div>
           <strong>Da verificare (giallo)</strong>
-          <p>Soddisfa i criteri principali ma ha qualche limite (prezzo elevato, disponibilità incerta, servizi parziali)</p>
+          <p>Soddisfa i criteri principali ma ha qualche limite: prezzo elevato, distanza moderata, disponibilità incerta, o è una piattaforma (qualità variabile)</p>
         </div>
       </div>
       <div class="method-item">
         <span class="method-dot red"></span>
         <div>
           <strong>Non ideale (rosso)</strong>
-          <p>Non rispetta uno o più criteri essenziali (bagno condiviso, cucina comune, distanza eccessiva)</p>
+          <p>Non rispetta criteri essenziali: bagno condiviso obbligatorio, cucina comune, distanza eccessiva</p>
         </div>
+      </div>
+    </div>
+
+    <div class="priority-list glass">
+      <h3>Priorità di selezione</h3>
+      <div class="priority-item">
+        <span class="priority-num">1</span>
+        <div><strong>Vicinanza all'UPNA</strong><p>Campus Arrosadía — privilegia strutture entro 15 min a piedi</p></div>
+      </div>
+      <div class="priority-item">
+        <span class="priority-num">2</span>
+        <div><strong>Rapporto qualità/prezzo</strong><p>Budget indicativo: €500–900/mese all-inclusive</p></div>
+      </div>
+      <div class="priority-item">
+        <span class="priority-num">3</span>
+        <div><strong>Sicurezza zona</strong><p>Arrosadía e Lezkairu sono zone sicure e ben collegate</p></div>
+      </div>
+      <div class="priority-item">
+        <span class="priority-num">4</span>
+        <div><strong>Compatibilità Erasmus</strong><p>Contratti brevi, accettazione stranieri, supporto internazionale</p></div>
+      </div>
+      <div class="priority-item">
+        <span class="priority-num">5</span>
+        <div><strong>Trasporti</strong><p>Bus urbano Pamplona: linee 9 e 14 servono il campus UPNA</p></div>
       </div>
     </div>
   </section>
